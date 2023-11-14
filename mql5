@@ -1,0 +1,96 @@
+
+// Order Blocks Zone Scalper MT4
+
+// Define input parameters
+input double EMAperiod = 20; // Period for EMA cross
+input double MAperiod = 50; // Period for MA filter
+input double RSIPeriod = 14; // Period for RSI filter
+input double MAthreshold = 0.5; // Threshold for MA filter
+input double RSIThreshold = 70; // Threshold for RSI filter
+
+// Define global variables
+double emaValue; // EMA value
+double maValue; // MA value
+double rsiValue; // RSI value
+
+// Initialize the robot
+void OnInit()
+{
+    // Set up necessary indicators
+    SetIndexStyle(0, DRAW_LINE);
+    SetIndexBuffer(0, emaValue);
+    SetIndexLabel(0, 'EMA');
+
+    SetIndexStyle(1, DRAW_LINE);
+    SetIndexBuffer(1, maValue);
+    SetIndexLabel(1, 'MA');
+
+    SetIndexStyle(2, DRAW_LINE);
+    SetIndexBuffer(2, rsiValue);
+    SetIndexLabel(2, 'RSI');
+
+    // Initialize error handling and logging
+    if (!IsTesting())
+    {
+        Print('Robot initialized successfully.');
+    }
+}
+
+// Start the robot
+void OnTick()
+{
+    // Check for order blocks and retest
+    if (CheckOrderBlocks())
+    {
+        // Switch to smaller timeframe
+        SwitchToSmallerTimeframe();
+
+        // Check for EMA cross
+        if (CheckEMACross())
+        {
+            // Apply MA and RSI filters
+            if (ApplyMAFilter() && ApplyRSIFilter())
+            {
+                // Enter trade
+                EnterTrade();
+            }
+        }
+    }
+}
+
+// Function to check for order blocks and retest
+bool CheckOrderBlocks()
+{
+    // Add code here to check for order blocks and retest
+}
+
+// Function to switch to smaller timeframe
+void SwitchToSmallerTimeframe()
+{
+    // Add code here to switch to smaller timeframe
+}
+
+// Function to check for EMA cross
+bool CheckEMACross()
+{
+    // Add code here to check for EMA cross
+}
+
+// Function to apply MA filter
+bool ApplyMAFilter()
+{
+    // Add code here to apply MA filter
+}
+
+// Function to apply RSI filter
+bool ApplyRSIFilter()
+{
+    // Add code here to apply RSI filter
+}
+
+// Function to enter trade
+void EnterTrade()
+{
+    // Add code here to enter trade
+}
+
